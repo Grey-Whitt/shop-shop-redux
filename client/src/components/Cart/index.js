@@ -7,13 +7,17 @@ import './style.css';
 import { QUERY_CHECKOUT } from '../../utils/queries';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/react-hooks';
-import { useStoreContext } from '../../utils/GlobalState';
+import { useDispatch, useSelector } from "react-redux";
+
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
 
-    const [state, dispatch] = useStoreContext();
+    //set up state and dispatch
+    const state = useSelector((state) => state);
+    const dispatch = useDispatch();
+  
 
     const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
